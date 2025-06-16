@@ -28,7 +28,7 @@ function App() {
   }, [jobs]);
 
   const addJob = (job: Job) => {
-    setJobs((prevJobs) => [...prevJobs, job]);
+    setJobs((prevJobs) => [job, ...prevJobs]);
   };
 
   return (
