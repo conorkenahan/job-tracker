@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+
+.jobItem {
+  background-color: $secondary-color;
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  font-family: $font-family;
+  margin-bottom: 8px;
+}

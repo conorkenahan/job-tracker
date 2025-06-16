@@ -1,3 +1,12 @@
+@import './styles/variables';
+
+body {
+  font-family: $font-family;
+  background-color: #f3f4f6;
+  margin: 0;
+  padding: 24px;
+}
+
 .App {
   text-align: center;
 }
