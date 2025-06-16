@@ -10,13 +10,13 @@ type Job = {
 };
 
 function App() {
-const [jobs, setJobs] = useState<Job[]>(() => {
-  const saved = localStorage.getItem('jobs');
-  return saved ? JSON.parse(saved) : [];
-});
+  const [jobs, setJobs] = useState<Job[]>(() => {
+    const saved = localStorage.getItem("jobs");
+    return saved ? JSON.parse(saved) : [];
+  });
 
   useEffect(() => {
-    const savedJobs = localStorage.getItem('jobs');
+    const savedJobs = localStorage.getItem("jobs");
     if (savedJobs) {
       setJobs(JSON.parse(savedJobs));
     }
@@ -24,7 +24,7 @@ const [jobs, setJobs] = useState<Job[]>(() => {
 
   // Save jobs to localStorage every time it changes
   useEffect(() => {
-    localStorage.setItem('jobs', JSON.stringify(jobs));
+    localStorage.setItem("jobs", JSON.stringify(jobs));
   }, [jobs]);
 
   const addJob = (job: Job) => {
@@ -38,7 +38,14 @@ const [jobs, setJobs] = useState<Job[]>(() => {
       <ul>
         {jobs.map((job, i) => (
           <li key={i}>
-            <JobItem title={job.title} desc={job.company} url={job.url} />
+            <JobItem
+              title={job.title}
+              desc={job.company}
+              url={job.url}
+              onDelete={() => {
+                setJobs((prev) => prev.filter((_, index) => index !== i));
+              }}
+            />
           </li>
         ))}
       </ul>

@@ -1,10 +1,24 @@
 @import '../../styles/variables.scss';
 
 .jobItem {
-  background-color: $secondary-color;
-  color: white;
+  background-color: $primary-color;
+  color: black;
   padding: 12px;
   border-radius: 6px;
   font-family: $font-family;
   margin-bottom: 8px;
+}
+
+.deleteButton {
+  margin-top: 0.5rem;
+  background-color: $secondary-color;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.deleteButton:hover {
+  background-color: $highlight-color;
 }
