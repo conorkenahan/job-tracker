@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import styles from './NewJob.module.scss';
 
+type Job = {
+  title: string;
+  url: string;
+  company: string;
+};
+
 type NewJobProps = {
-  onAddJob: (job: { title: string; url: string; company: string }) => void;
+  onAddJob: (job: Job) => void;
 };
 
 const NewJob: React.FC<NewJobProps> = ({ onAddJob }) => {

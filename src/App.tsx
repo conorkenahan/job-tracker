@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.scss";
 import JobItem from "./components/JobItem/JobItem";
 import NewJob from "./components/NewJob/NewJob";
@@ -10,16 +10,31 @@ type Job = {
 };
 
 function App() {
-  const [jobs, setJobs] = useState<Job[]>([]);
+const [jobs, setJobs] = useState<Job[]>(() => {
+  const saved = localStorage.getItem('jobs');
+  return saved ? JSON.parse(saved) : [];
+});
 
-  const handleAddJob = (job: Job) => {
+  useEffect(() => {
+    const savedJobs = localStorage.getItem('jobs');
+    if (savedJobs) {
+      setJobs(JSON.parse(savedJobs));
+    }
+  }, []);
+
+  // Save jobs to localStorage every time it changes
+  useEffect(() => {
+    localStorage.setItem('jobs', JSON.stringify(jobs));
+  }, [jobs]);
+
+  const addJob = (job: Job) => {
     setJobs((prevJobs) => [...prevJobs, job]);
   };
 
   return (
     <div>
       <h1>Job Tracker</h1>
-      <NewJob onAddJob={handleAddJob} />
+      <NewJob onAddJob={addJob} />
       <ul>
         {jobs.map((job, i) => (
           <li key={i}>
